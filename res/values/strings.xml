@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Ramais PTI</string>
+	<string name="nome">Nome da Pessoa</string>
+	<string name="empresa">Empresa em que trabalha</string>
+	<string name="cargo">Cargo que exerce</string>
+	<string name="ajuda_pesquisa">Busque pelos campos abaixo, o campo Nome é obrigatório</string>
+	<string name="buscar">Buscar</string>
+	<string name="loading">Carregando...</string>
+	<string name="searching">Buscando ramais, aguarde um momento.</string>
+	<string name="required">O campo "Nome" é obrigatório</string>
+	<string name="no_results">Nenhum resultado encontrado.</string>
+	<string name="internet_required">Sem internet, não será possível efetuar a pesquisa.</string>
+</resources>
