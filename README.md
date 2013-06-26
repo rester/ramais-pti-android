@@ -12,7 +12,7 @@ Confira na Play Store: [https://play.google.com/store/apps/details?id=com.fernan
 Changelogs
 ==================
 ### 1.1
-* Adicionado ação de pesquisar diretamente dos campos de texto
+* Adicionada ação de pesquisar diretamente dos campos de texto
 * Refinada validação do campo nome
 
 ### 1.0
