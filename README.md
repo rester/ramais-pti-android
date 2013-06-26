@@ -5,17 +5,17 @@ Aplicação android para consulta de ramal de um colaborador do PTI (http://pti.
 
 Confira na Play Store: [https://play.google.com/store/apps/details?id=com.fernandomantoan.ramaispti.android](https://play.google.com/store/apps/details?id=com.fernandomantoan.ramaispti.android)
 
-![Screen 1](https://lh6.ggpht.com/nFAlPDY0cSSBiVvBz4bAgPzo1E-eTB4rSCS9qnCM1M2rAZ-t6R9Bi81Rc_j9rcnFVPti=h230)
+![Screen 1](https://lh6.ggpht.com/nFAlPDY0cSSBiVvBz4bAgPzo1E-eTB4rSCS9qnCM1M2rAZ-t6R9Bi81Rc_j9rcnFVPti)
 
 ![Screen 2](https://lh6.ggpht.com/5BnlExUFMHYsQSyz8c4MLah5xvc7rpWxdF40Edkb8nHWuCOAnMedkmjI0engGLSTGyuF)
 
 Changelogs
 ==================
-## 1.1:
+### 1.1
 * Adicionado ação de pesquisar diretamente dos campos de texto
 * Refinada validação do campo nome
 
-## 1.0:
+### 1.0
 * Permite a consulta por nome e opcionalmente empresa/cargo
 * Exibe os contatos encontrados baseado no webservice da Plataforma Digital de Informações PTI
 * Ao selecionar um contato, abre a tela de ligação
