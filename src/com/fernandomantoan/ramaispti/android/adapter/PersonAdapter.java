@@ -3,6 +3,7 @@ package com.fernandomantoan.ramaispti.android.adapter;
 import java.util.List;
 
 import android.app.Activity;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,10 +54,15 @@ public class PersonAdapter extends BaseAdapter {
 		View view = inflater.inflate(resourceViewId, parent, false);
 
 		TextView nameTV = (TextView) view.findViewById(R.id.name);
-		nameTV.setText(person.getName());
+		
+		// Se não suportar textAllCaps, deixa tudo maiúsculo manualmente
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+			nameTV.setText(person.getName().toUpperCase());
+		else
+			nameTV.setText(person.getName());
 
 		TextView companyTV = (TextView) view.findViewById(R.id.company);
-		companyTV.setText(WordUtil.capitalizeString(person.getCompany().getName()));
+		companyTV.setText(person.getCompany().getName());
 
 		TextView telephoneTV = (TextView) view.findViewById(R.id.telephone);
 		telephoneTV.setText(person.getTelephone());
