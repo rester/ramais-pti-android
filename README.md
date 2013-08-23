@@ -11,6 +11,12 @@ Confira na Play Store: [https://play.google.com/store/apps/details?id=com.fernan
 
 Changelogs
 ==================
+
+### 1.2
+* Diminuindo a versão mínima para o Android 2.1
+* Exibe o nome empresa em maiúsculo
+* Correção para exibir o nome em maiúsculo para versões do Android menores que a 4.0
+
 ### 1.1
 * Adicionada ação de pesquisar diretamente dos campos de texto
 * Refinada validação do campo nome
