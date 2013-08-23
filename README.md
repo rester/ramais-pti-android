@@ -14,7 +14,7 @@ Changelogs
 
 ### 1.2
 * Diminuindo a versão mínima para o Android 2.1
-* Exibe o nome empresa em maiúsculo
+* Exibe o nome da empresa em maiúsculo
 * Correção para exibir o nome em maiúsculo para versões do Android menores que a 4.0
 
 ### 1.1
