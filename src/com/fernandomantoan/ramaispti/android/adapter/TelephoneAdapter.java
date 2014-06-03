@@ -1,7 +1,6 @@
 package com.fernandomantoan.ramaispti.android.adapter;
 
 import java.util.List;
-import java.util.Locale;
 
 import android.app.Activity;
 import android.os.Build;
@@ -12,34 +11,36 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.fernandomantoan.ramaispti.android.R;
-import com.fernandomantoan.ramaispti.android.entity.Person;
+import com.fernandomantoan.ramaispti.android.entity.LegalEntity;
 import com.fernandomantoan.ramaispti.android.util.WordUtil;
 
-public class PersonAdapter extends BaseAdapter {
+public class TelephoneAdapter extends BaseAdapter{
+	
+	
 	private Activity activity;
-	private List<Person> people;
+	private List<LegalEntity> entity;
 	private int resourceViewId;
 
-	public PersonAdapter(Activity activity, int resourceViewId,
-			List<Person> people) {
+	public TelephoneAdapter(Activity activity, int resourceViewId,
+			List<LegalEntity> entities) {
 		this.activity = activity;
 		this.resourceViewId = resourceViewId;
-		this.people = people;
+		this.entity = entities;
 	}
 
 	@Override
 	public int getCount() {
-		return people.size();
+		return entity.size();
 	}
 
 	@Override
 	public Object getItem(int i) {
-		return people.get(i);
+		return entity.get(i);
 	}
 
 	@Override
 	public long getItemId(int i) {
-		return people.get(i).hashCode();
+		return entity.get(i).hashCode();
 	}
 
 	@Override
@@ -49,7 +50,7 @@ public class PersonAdapter extends BaseAdapter {
 
 	private View layoutInflater(int position, ViewGroup parent) {
 
-		Person person = people.get(position);
+		LegalEntity en = entity.get(position);
 
 		LayoutInflater inflater = activity.getLayoutInflater();
 		View view = inflater.inflate(resourceViewId, parent, false);
@@ -58,40 +59,37 @@ public class PersonAdapter extends BaseAdapter {
 		
 		// Se não suportar textAllCaps, deixa tudo maiúsculo manualmente
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-			nameTV.setText(person.getName().toUpperCase(Locale.getDefault()));
+			nameTV.setText(en.getEntityName().toUpperCase());
 		else
-			nameTV.setText(person.getName());
+			nameTV.setText(en.getEntityName());
 
-		TextView companyTV = (TextView) view.findViewById(R.id.company);
-		companyTV.setText(person.getCompany().getName());
-		/*TextView telephoneTV = (TextView) view.findViewById(R.id.telephone);
-		String[] aux = person.getTelephone().split("/");
-		telephoneTV.setText(aux[0]);
-		*/
+		/*TextView companyTV = (TextView) view.findViewById(R.id.company);
+		companyTV.setText(en.getCompany().getName());*/
+
+	/*	TextView telephoneTV = (TextView) view.findViewById(R.id.telephone);
+		telephoneTV.setText(en.getTelephone());*/
+		
 		TextView telephoneTV = (TextView) view.findViewById(R.id.telephone);
-		String aux = person.getTelephone().replace("/", "\n");
+		//String tel = en.getTelephone();
+		//String[] aux = tel.split("/");
+		//telephoneTV.setText(person.getTelephone());
+		//telephoneTV.setText(aux[0]);
+		String aux = en.getTelephone().replace("/", "\n");
 		telephoneTV.setText(aux);
 		
-	/*	TextView telephoneTV = (TextView) view.findViewById(R.id.telephone);
-		String tel = person.getTelephone();
-		String[] aux = tel.split("/");
-		//telephoneTV.setText(person.getTelephone());
-		telephoneTV.setText(aux[0]);
-*/
-		
-
-		
 		TextView roleTV = (TextView) view.findViewById(R.id.role);
-		if (person.getRole().getName() == null || "".equals(person.getRole().getName()))
+		if (en.getRole().getName() == null || "".equals(en.getRole().getName()))
 			roleTV.setVisibility(View.GONE);
 		else
-			roleTV.setText(WordUtil.capitalizeString(person.getRole().getName()));
+			roleTV.setText(WordUtil.capitalizeString(en.getRole().getName()));
 		
-		if (person.getTelephone() == null || "".equals(person.getTelephone())) {
+		if (en.getTelephone() == null || "".equals(en.getTelephone())) {
 			view.setEnabled(false);
 			view.setClickable(false);
 		}
 
 		return view;
 	}
+
+
 }
