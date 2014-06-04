@@ -58,29 +58,17 @@ public class PersonAdapter extends BaseAdapter {
 		
 		// Se não suportar textAllCaps, deixa tudo maiúsculo manualmente
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-			nameTV.setText(person.getName().toUpperCase(Locale.getDefault()));
+			nameTV.setText(person.getName().toUpperCase());
 		else
 			nameTV.setText(person.getName());
 
 		TextView companyTV = (TextView) view.findViewById(R.id.company);
 		companyTV.setText(person.getCompany().getName());
-		/*TextView telephoneTV = (TextView) view.findViewById(R.id.telephone);
-		String[] aux = person.getTelephone().split("/");
-		telephoneTV.setText(aux[0]);
-		*/
+		
 		TextView telephoneTV = (TextView) view.findViewById(R.id.telephone);
 		String aux = person.getTelephone().replace("/", "\n");
 		telephoneTV.setText(aux);
-		
-	/*	TextView telephoneTV = (TextView) view.findViewById(R.id.telephone);
-		String tel = person.getTelephone();
-		String[] aux = tel.split("/");
-		//telephoneTV.setText(person.getTelephone());
-		telephoneTV.setText(aux[0]);
-*/
-		
-
-		
+				
 		TextView roleTV = (TextView) view.findViewById(R.id.role);
 		if (person.getRole().getName() == null || "".equals(person.getRole().getName()))
 			roleTV.setVisibility(View.GONE);

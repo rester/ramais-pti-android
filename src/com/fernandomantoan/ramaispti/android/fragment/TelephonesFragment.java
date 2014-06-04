@@ -25,8 +25,6 @@ import com.fernandomantoan.ramaispti.android.entity.LegalEntity;
  * @author inovatic
  *
  */
-
-
 public class TelephonesFragment extends Fragment /*implements SearchView.OnQueryTextListener*/{
 	
 	private TelephoneAdapter adapter;
@@ -58,17 +56,7 @@ public class TelephonesFragment extends Fragment /*implements SearchView.OnQuery
 		
 		return view;
 	}
-	
-	/*@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		// TODO Auto-generated method stub
-		super.onCreateOptionsMenu(menu, inflater);
 		
-		MenuItem searchItem = menu.findItem(R.id.action_search);
-		searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-		searchView.setOnQueryTextListener(this
-	}
-	*/
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

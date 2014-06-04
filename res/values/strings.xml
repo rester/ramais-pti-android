@@ -13,7 +13,7 @@
 	<string name="required">O campo "Nome" é obrigatório</string>
 	<string name="no_results">Nenhum resultado encontrado.</string>
 	<string name="internet_required">Sem internet, não será possível efetuar a pesquisa.</string>
-
+	<string name="escolher_telefone">Escolha para qual número deseja ligar</string>
 <string-array name="services_array">
         <item>Ramais</item>
         <item>Alimentação</item>

@@ -1,6 +1,7 @@
 package com.fernandomantoan.ramaispti.android.adapter;
 
 import java.util.List;
+import java.util.Locale;
 
 import android.app.Activity;
 import android.os.Build;
@@ -63,17 +64,8 @@ public class TelephoneAdapter extends BaseAdapter{
 		else
 			nameTV.setText(en.getEntityName());
 
-		/*TextView companyTV = (TextView) view.findViewById(R.id.company);
-		companyTV.setText(en.getCompany().getName());*/
-
-	/*	TextView telephoneTV = (TextView) view.findViewById(R.id.telephone);
-		telephoneTV.setText(en.getTelephone());*/
-		
 		TextView telephoneTV = (TextView) view.findViewById(R.id.telephone);
-		//String tel = en.getTelephone();
-		//String[] aux = tel.split("/");
-		//telephoneTV.setText(person.getTelephone());
-		//telephoneTV.setText(aux[0]);
+		
 		String aux = en.getTelephone().replace("/", "\n");
 		telephoneTV.setText(aux);
 		

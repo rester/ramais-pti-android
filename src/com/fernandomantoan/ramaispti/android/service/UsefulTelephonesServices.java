@@ -4,10 +4,7 @@ import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import android.os.AsyncTask;
-import android.util.Log;
-
 import com.fernandomantoan.ramaispti.android.entity.LegalEntity;
 import com.fernandomantoan.ramaispti.android.fragment.UsefulSearchFragment;
 import com.fernandomantoan.ramaispti.android.support.WebClient;
@@ -45,7 +42,6 @@ public class UsefulTelephonesServices extends AsyncTask<String, Object, String>{
 			
 		}
 		
-		Log.i("antes return", "nao  funcionou");
 		return null;
 	}
 

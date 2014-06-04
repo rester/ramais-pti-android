@@ -11,7 +11,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,6 +22,12 @@ import com.fernandomantoan.ramaispti.android.fragment.SearchFragment;
 import com.fernandomantoan.ramaispti.android.fragment.UsefulSearchFragment;
 
 
+/**
+ * 
+ * Main Activity, handles drawer action
+ * @author inovatic
+ *
+ */
 public class MainFragmentActivity extends ActionBarActivity {
 
 	private DrawerLayout mDrawerLayout;
@@ -56,7 +61,7 @@ public class MainFragmentActivity extends ActionBarActivity {
                 R.layout.drawer_list_item, mServiceTitles));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
         
-     // enable ActionBar app icon to behave as action to toggle nav drawer
+        // enable ActionBar app icon to behave as action to toggle nav drawer
       
     	actionBar = getSupportActionBar();
 	    actionBar.setDisplayHomeAsUpEnabled(true);
@@ -89,16 +94,7 @@ public class MainFragmentActivity extends ActionBarActivity {
             selectItem(0);
         }
     }
-        
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-//		
-//		MenuInflater inflater = new MenuInflater(getApplicationContext());
-//		inflater.inflate(R.menu.search, menu);
-		return true;
-		
-	}
+ 
 
 	@Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -114,22 +110,6 @@ public class MainFragmentActivity extends ActionBarActivity {
 
 	@Override
 	public void onBackPressed() {
-		/*				
-		if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-			
-			for(int i = 0; i < getSupportFragmentManager().getBackStackEntryCount(); i++){
-				int backStackId = getSupportFragmentManager().getBackStackEntryAt(i).getId();
-				getSupportFragmentManager().popBackStack(backStackId, FragmentManager.POP_BACK_STACK_INCLUSIVE);	
-			}
-			
-			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-			ft.replace(R.id.content_frame, new SearchFragment()).commit();
-		}
-		else{
-			super.onBackPressed();
-		}
-*/		
-		
 
 		if (selectedPosition != 0) {
 	        selectItem(0);
@@ -153,15 +133,7 @@ public class MainFragmentActivity extends ActionBarActivity {
 		if(mServiceTitles[position].equals("Ramais")){
 			
 			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-		//	FragmentManager fm = getSupportFragmentManager();
-						
-		/*	if (fm.getBackStackEntryCount() > 0) {//se já tiver um SearchFragment na pilha
-				for(int i = 0; i < fm.getBackStackEntryCount(); i++){
-					int backStackId = fm.getBackStackEntryAt(i).getId();
-					fm.popBackStack(backStackId, FragmentManager.POP_BACK_STACK_INCLUSIVE);	
-				}
-		}*/
-							
+									
 			ft.replace(R.id.content_frame, new SearchFragment()).commit();	
 			
 			mDrawerList.setItemChecked(position, true);
@@ -174,15 +146,6 @@ public class MainFragmentActivity extends ActionBarActivity {
 			args.putString("op", mServiceTitles[position]);
 			fragment.setArguments(args);
 			
-			//FragmentManager fm = getSupportFragmentManager();
-			
-	/*		if (fm.getBackStackEntryCount() > 0) {//se já tiver um SearchFragment na pilha
-				for(int i = 0; i < fm.getBackStackEntryCount(); i++){
-					int backStackId = fm.getBackStackEntryAt(i).getId();
-					fm.popBackStack(backStackId, FragmentManager.POP_BACK_STACK_INCLUSIVE);	
-				}	
-			}
-	*/				
 			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 			ft.replace(R.id.content_frame, fragment).commit();
 			

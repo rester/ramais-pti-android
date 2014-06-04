@@ -1,5 +1,7 @@
 package com.fernandomantoan.ramaispti.android.fragment;
 
+import com.fernandomantoan.ramaispti.android.R;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -8,6 +10,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 
+
+/**
+ * Dialog to choose telephone number when has more than one
+ * @author inovatic
+ *
+ */
 public class NumberChoiceDialogFragment extends DialogFragment{
 	
 	static final String TELEFONES  = "telefones";
@@ -28,7 +36,7 @@ public class NumberChoiceDialogFragment extends DialogFragment{
 	        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 			        
 	        builder
-			.setTitle("Escolha para qual número deseja ligar")
+			.setTitle(getResources().getString(R.string.escolher_telefone))
 			.setItems(getArguments().getStringArray(TELEFONES), new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
 					// The 'which' argument contains the index position
