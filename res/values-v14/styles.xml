@@ -7,6 +7,12 @@
     -->
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- API 14 theme customizations can go here. -->
+           <item name="myapp_textAppearanceListItemSmall">?android:attr/textAppearanceListItemSmall</item>
+           <item name="myapp_activatedBackgroundIndicator">?android:attr/activatedBackgroundIndicator</item>
+           <item name="myapp_listPreferredItemHeightSmall">?android:attr/listPreferredItemHeightSmall</item>
+    
+           
+        
     </style>
 
 </resources>
