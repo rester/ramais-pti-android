@@ -20,6 +20,7 @@ import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 import com.fernandomantoan.ramaispti.android.R;
+import com.fernandomantoan.ramaispti.android.activity.MainFragmentActivity;
 import com.fernandomantoan.ramaispti.android.entity.Person;
 import com.fernandomantoan.ramaispti.android.service.TelephonesServices;
 import com.fernandomantoan.ramaispti.android.util.Network;
@@ -45,7 +46,8 @@ public class SearchFragment extends Fragment {
     // ---------------------------------------------------------------------------------------------
     // Main Activity Overrides
     // ---------------------------------------------------------------------------------------------
-     
+        
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	// TODO Auto-generated method stub
@@ -103,10 +105,17 @@ public class SearchFragment extends Fragment {
     		    		
     		ft.replace(R.id.content_frame, peopleA);
     		ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);	
-    		ft.addToBackStack(null);
+    		//ft.addToBackStack(null);
+    		//para voltar ao primeiro item da NavigationDrawer
+    		MainFragmentActivity m = (MainFragmentActivity) getActivity();
+    		m.selectedPosition = 2;
+    		
     		ft.commit();
     	}
     }
+
+	
+	
 	/**
 	 * imeOptions listener, handle the "actionSearch" type
 	 */

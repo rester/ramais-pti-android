@@ -39,7 +39,7 @@ public class MainFragmentActivity extends ActionBarActivity {
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 	private String[] mServiceTitles;
-	int selectedPosition = 0;
+	public int selectedPosition = 0;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -135,7 +135,7 @@ public class MainFragmentActivity extends ActionBarActivity {
 			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 									
 			ft.replace(R.id.content_frame, new SearchFragment()).commit();	
-			
+		
 			mDrawerList.setItemChecked(position, true);
 			setTitle(mServiceTitles[position]);
 			mDrawerLayout.closeDrawer(mDrawerList);
