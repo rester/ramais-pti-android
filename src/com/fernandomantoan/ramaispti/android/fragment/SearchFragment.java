@@ -1,32 +1,37 @@
-package com.fernandomantoan.ramaispti.android.activity;
+package com.fernandomantoan.ramaispti.android.fragment;
 
 import java.util.ArrayList;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.MenuItem.OnMenuItemClickListener;
 import com.fernandomantoan.ramaispti.android.R;
+import com.fernandomantoan.ramaispti.android.activity.MainFragmentActivity;
 import com.fernandomantoan.ramaispti.android.entity.Person;
 import com.fernandomantoan.ramaispti.android.service.TelephonesServices;
 import com.fernandomantoan.ramaispti.android.util.Network;
+
 
 /**
  * Search Activity, handles the search form
  * 
  * @author fernando
  */
-public class SearchActivity extends SherlockActivity {
+public class SearchFragment extends Fragment {
 	// ---------------------------------------------------------------------------------------------
     // Attributes
     // ---------------------------------------------------------------------------------------------
@@ -35,34 +40,51 @@ public class SearchActivity extends SherlockActivity {
     private EditText roleEditText;
     
     private ProgressDialog progressDialog;
+    
+    //private static final int CONTENT_VIEW_ID = 666;
+    
     // ---------------------------------------------------------------------------------------------
     // Main Activity Overrides
     // ---------------------------------------------------------------------------------------------
+        
+    
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.search_form);
-        this.initUIItems();
+    public void onCreate(Bundle savedInstanceState) {
+    	// TODO Auto-generated method stub
+    	super.onCreate(savedInstanceState);
+    	
+    	setHasOptionsMenu(true);
     }
-
+    
+    
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.search_form, container, false);
+		initUIItems(view);
+		return view;
+    }
+ 
+    
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getSupportMenuInflater().inflate(R.menu.search, menu);
-        menu.findItem(R.id.action_search).setOnMenuItemClickListener(menuSearchClick);
-        return true;
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    	// TODO Auto-generated method stub
+    	inflater = new MenuInflater(getActivity().getApplicationContext());
+    	inflater.inflate(R.menu.search, menu);
+    	super.onCreateOptionsMenu(menu, inflater);
+    	
     }
-	// ---------------------------------------------------------------------------------------------
-	// Handlers
-	// ---------------------------------------------------------------------------------------------
-    /**
-     * Called when actionbar menu is pressed
-     */
-	final OnMenuItemClickListener menuSearchClick = new OnMenuItemClickListener() {
-		@Override
-		public boolean onMenuItemClick(MenuItem item) {
-			return doSearch();
-		}
-	};
+    
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	switch(item.getItemId()){
+    	case R.id.action_search:
+    		return doSearch();
+   		default:   	
+   			return super.onOptionsItemSelected(item);
+    	}
+    }
+       
+    
 	/**
 	 * Called when the webservice request ends, if there are results show them, if not show a message
 	 * 
@@ -71,17 +93,29 @@ public class SearchActivity extends SherlockActivity {
 	public void requestEnd(ArrayList<Person> people) {
     	hideLoading();
     	if (people == null || people.size() == 0)
-    		Toast.makeText(this, R.string.no_results, Toast.LENGTH_LONG).show();
+    		Toast.makeText(getActivity(), R.string.no_results, Toast.LENGTH_LONG).show();
     	else {
     		Bundle bundle = new Bundle();
     		bundle.putParcelableArrayList("array", people);
+    	
+    		PeopleFragment peopleA = new PeopleFragment();
+    		peopleA.setArguments(bundle);
     		
-    		Intent intent = new Intent(SearchActivity.this, PeopleActivity.class);
-    		intent.putExtra("array", bundle);
+    		FragmentTransaction ft = getFragmentManager().beginTransaction();
+    		    		
+    		ft.replace(R.id.content_frame, peopleA);
+    		ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);	
+    		//ft.addToBackStack(null);
+    		//para voltar ao primeiro item da NavigationDrawer
+    		MainFragmentActivity m = (MainFragmentActivity) getActivity();
+    		m.selectedPosition = 2;
     		
-    		startActivity(intent);
+    		ft.commit();
     	}
     }
+
+	
+	
 	/**
 	 * imeOptions listener, handle the "actionSearch" type
 	 */
@@ -100,10 +134,10 @@ public class SearchActivity extends SherlockActivity {
 	/**
 	 * Initialize the EditTexts and set listeners for them
 	 */
-    protected void initUIItems() {
-        this.nameEditText = (EditText) findViewById(R.id.name);
-        this.companyEditText = (EditText) findViewById(R.id.company);
-        this.roleEditText = (EditText) findViewById(R.id.role);
+    protected void initUIItems(View view) {
+        this.nameEditText = (EditText) view.findViewById(R.id.name);
+        this.companyEditText = (EditText) view.findViewById(R.id.company);
+        this.roleEditText = (EditText) view.findViewById(R.id.role);
         
         this.nameEditText.setOnEditorActionListener(searchActionListener);
         this.companyEditText.setOnEditorActionListener(searchActionListener);
@@ -113,7 +147,7 @@ public class SearchActivity extends SherlockActivity {
      * Show the ProgressDialog while the request is running
      */
     public void showLoading() {
-    	progressDialog = new ProgressDialog(SearchActivity.this);
+    	progressDialog = new ProgressDialog(getActivity());
 		progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 		progressDialog.setTitle(R.string.loading);
 		progressDialog.setMessage(getString(R.string.searching));
@@ -138,14 +172,14 @@ public class SearchActivity extends SherlockActivity {
      */
     protected boolean doSearch() {
     	if (validate()) {
-			if (!Network.isNetworkAvailable(getApplicationContext())) {
-				Toast.makeText(SearchActivity.this, R.string.internet_required, Toast.LENGTH_LONG).show();
+			if (!Network.isNetworkAvailable(getActivity().getApplicationContext())) {
+				Toast.makeText(getActivity(), R.string.internet_required, Toast.LENGTH_LONG).show();
 				return false;
 			}
-			new TelephonesServices(SearchActivity.this, nameEditText.getText().toString(), companyEditText.getText().toString(), roleEditText.getText().toString()).execute();
+			new TelephonesServices(SearchFragment.this, nameEditText.getText().toString(), companyEditText.getText().toString(), roleEditText.getText().toString()).execute();
 			return true;
 		} else {
-			Toast.makeText(SearchActivity.this, R.string.required, Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), R.string.required, Toast.LENGTH_SHORT).show();
 			return false;
 		}
     }
@@ -162,4 +196,5 @@ public class SearchActivity extends SherlockActivity {
     	}
     	return true;
     }
+    
 }

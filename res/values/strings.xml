@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">Ramais PTI</string>
-	<string name="nome">Nome da Pessoa</string>
+
+    <string name="app_name">PTIRamais</string>
+    
+    <string name="nome">Nome da Pessoa</string>
 	<string name="empresa">Empresa em que trabalha</string>
 	<string name="cargo">Cargo que exerce</string>
 	<string name="ajuda_pesquisa">Busque pelos campos abaixo, o campo Nome é obrigatório</string>
@@ -11,4 +13,23 @@
 	<string name="required">O campo "Nome" é obrigatório</string>
 	<string name="no_results">Nenhum resultado encontrado.</string>
 	<string name="internet_required">Sem internet, não será possível efetuar a pesquisa.</string>
+	<string name="escolher_telefone">Escolha para qual número deseja ligar</string>
+<string-array name="services_array">
+        <item>Ramais</item>
+        <item>Alimentação</item>
+        <item>Ambulatório</item>
+        <item>Área funcional</item>
+        <item>Banco</item>
+        <item>Biblioteca</item>
+        <item>Ensino</item>
+        <item>Instituição</item>
+        <item>Itaipu</item>
+        <item>Programas e Projetos</item>
+        <item>Serviços</item>
+    </string-array>
+     <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="action_websearch">Web search</string>
+    <string name="app_not_available">Sorry, there\'s no web browser available</string>
+
 </resources>

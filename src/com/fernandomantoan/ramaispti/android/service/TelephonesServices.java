@@ -6,22 +6,22 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.fernandomantoan.ramaispti.android.activity.SearchActivity;
-import com.fernandomantoan.ramaispti.android.entity.Person;
-import com.fernandomantoan.ramaispti.android.support.WebClient;
-
 import android.os.AsyncTask;
+
+import com.fernandomantoan.ramaispti.android.entity.Person;
+import com.fernandomantoan.ramaispti.android.fragment.SearchFragment;
+import com.fernandomantoan.ramaispti.android.support.WebClient;
 
 public class TelephonesServices extends AsyncTask<String, Object, String> {
 	private final static String ENDPOINT = "http://pdi.pti.org.br/habitantes/telefones?nome=";
 	
-	private SearchActivity activity;
+	private SearchFragment activity;
 	private ArrayList<Person> people = new ArrayList<Person>();
 	private String name;
 	private String company;
 	private String role;
 	
-	public TelephonesServices(SearchActivity activity, String name, String company, String role) {
+	public TelephonesServices(SearchFragment activity, String name, String company, String role) {
 		this.activity = activity;
 		this.name = name;
 		this.company = company;

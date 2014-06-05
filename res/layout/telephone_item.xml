@@ -28,23 +28,11 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/company"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/name"
-        
-        android:layout_toLeftOf="@id/telephone"
-        android:text="" />
-
-    <TextView
         android:id="@+id/role"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/company"
-        
-        android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@id/telephone"
-        android:text="" 
+        android:layout_below="@id/name"
+        android:text=""
         android:textStyle="italic" />
+
 </RelativeLayout>
