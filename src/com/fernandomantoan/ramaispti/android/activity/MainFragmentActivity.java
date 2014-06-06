@@ -92,10 +92,19 @@ public class MainFragmentActivity extends ActionBarActivity {
 
         if (savedInstanceState == null) {
             selectItem(0);
+        }else{
+        	this.selectedPosition = savedInstanceState.getInt("select");
+        	
         }
     }
  
-
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		// TODO Auto-generated method stub
+		super.onSaveInstanceState(outState);
+		outState.putInt("select", this.selectedPosition);
+	}
+	
 	@Override
     public boolean onOptionsItemSelected(MenuItem item) {
          // The action bar home/up action should open or close the drawer.
